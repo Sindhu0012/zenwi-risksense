@@ -91,3 +91,4 @@ zenwi-risksense/
 ├── data/students.csv         # Kaggle dataset (not included, download it yourself)
 └── README.md
 ```
+**[Zenwi RiskSense](https://github.com/Sindhu0012/zenwi-risksense)** - ML experiment on a public student dataset. Models hit ~100% until I traced the label to a hard-coded synthetic rule, then retrained honestly (PR-AUC ~0.05). Python, scikit-learn, pandas.
