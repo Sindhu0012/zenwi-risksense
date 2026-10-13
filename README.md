@@ -91,5 +91,3 @@ zenwi-risksense/
 ├── data/students.csv         # Kaggle dataset (not included, download it yourself)
 └── README.md
 ```
-
-## Project structure
