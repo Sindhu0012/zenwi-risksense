@@ -2,7 +2,7 @@
 
 **An ML prototype for identifying at-risk students, built as an R&D feature concept for [Zenwi](https://github.com/Sindhu0012/zenwi), my study-tracker app.**
 
-> **Honest framing:** This uses a public Kaggle dataset, not real Zenwi user data (Zenwi has too few users for meaningful ML). The engineering is real; the data source is public and clearly labeled as such.
+> **Honest framing:** This uses a public Kaggle dataset, not real Zenwi user data. The engineering is real; the data source is public and clearly labeled as such.
 
 ## The problem
 
@@ -69,6 +69,13 @@ The importances are spread almost evenly (0.05 to 0.10) and the model barely bea
 - Shallow decision trees and feature importance are quick ways to expose hidden rules.
 - This dataset is not suitable for a real dropout predictor. A real version needs real, noisy student data.
 
+## Limitations and next steps
+
+- The dataset is synthetic, so none of these results say anything about real students.
+- I used a single stratified 80/20 split with a fixed random seed; cross-validation would give more reliable estimates.
+- No hyperparameter tuning or threshold tuning was done, since the leak-free models show almost no signal to tune.
+- Next step: repeat this pipeline on a real, noisy dropout dataset.
+
 ## Why this matters for Zenwi
 
 Zenwi already tracks study habits and time management, so a risk feature is a plausible future direction. This project shows the pipeline and, more importantly, the validation discipline such a feature would need before anyone trusts it.
@@ -85,6 +92,7 @@ zenwi-risksense/
 ├── 2_leak_check.py           # Finds and verifies the hidden label rule
 ├── 3_train_model.py          # Trains Logistic Regression and Random Forest
 ├── 4_feature_importance.py   # Feature importance on the leak-free data
+├── requirements.txt
 ├── balance.png               # Class balance chart
 ├── heatmap.png               # Correlation heatmap
 ├── feature_importance.png    # Feature importance chart
@@ -97,7 +105,7 @@ zenwi-risksense/
 ```bash
 python -m venv venv
 source venv/bin/activate
-pip install pandas scikit-learn matplotlib seaborn
+pip install -r requirements.txt
 # put the Kaggle CSV at data/students.csv
 python 1_eda.py
 python 2_leak_check.py
